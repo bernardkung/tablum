@@ -3,9 +3,9 @@
   <div id="container">
     <h1>Risk of Rain 2 Items</h1>
     
-    <form id="search_items">
-      <input id="searchInput" placeholder="Search for item">
-      <button id="searchButton" type="button">Search</button>
+    <form id="searchForm" class="search_form">
+      <input id="searchInput" placeholder="Search for item" class="search_input"><!--
+      --><button id="searchButton" type="button" class="search_button">Search</button>
     </form>
     
     <ul class="grid">
@@ -23,8 +23,12 @@
       <% }); %>
     </ul>
     
+  <button id="scrollUp" action="button">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+  </button>
+  
   </div>
-
+<%- include("partials/cdn") %>
 
 <script>
   const searchInput = document.querySelector('#searchInput');
@@ -50,15 +54,18 @@
       } else {
         div.classList.remove('inactive');
       }
-    })
-    
-    // matchDivs.forEach(div => {
-    //   div.classList.add("active");
-    // })
+    });
   };
   
   searchInput.addEventListener('change', filterMatches);
   searchInput.addEventListener('keyup', filterMatches);
+  
+  
+  function scrollUp() {
+    console.log("Scrolling!");
+  };
+  
+  
   
 </script>
 
