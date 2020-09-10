@@ -1,0 +1,65 @@
+<%- include("partials/header") %>
+
+  <div id="container">
+    <h1>Risk of Rain 2 Items</h1>
+    
+    <form id="search_items">
+      <input id="searchInput" placeholder="Search for item">
+      <button id="searchButton" type="button">Search</button>
+    </form>
+    
+    <ul class="grid">
+      <% items.forEach(function(item) {%>
+        <li class="grid-item <%= item.rarity %>" data-key="<%= item.name %>">
+          <img class="grid-img" src="/img/<%= encodeURI(item.file_name) %>">
+          <div class="grid-card">
+            <h3 class="grid-title"><%= item.name %></h3>
+            <p class="grid-description"><%= item.description %></p>
+            <% if (item.drop != "-") {%>
+              <p class="grid-description">Drop: <%= item.drop %></p>
+            <% }; %>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
+    
+  </div>
+
+
+<script>
+  const searchInput = document.querySelector('#searchInput');
+  const items = <%- JSON.stringify(items) %>;
+  const itemDivs = [...document.querySelectorAll('.grid-item')];
+  
+  function findMatches(wordToMatch, array) {
+    return array.filter(item => {
+      const regex = new RegExp(wordToMatch, 'gi');
+      return item.name.match(regex) || item.description.match(regex);
+    });
+  };
+  
+  function filterMatches() {
+    // Get an array of all items with a name or description matching the search mterm
+    const matchArray = findMatches(this.value, items);
+    const matchNames = matchArray.map(match => match.name);
+    
+    // Get all divs with data 
+    itemDivs.forEach(div => {
+      if (!matchNames.includes(div.getAttribute('data-key'))) {
+        div.classList.add('inactive');
+      } else {
+        div.classList.remove('inactive');
+      }
+    })
+    
+    // matchDivs.forEach(div => {
+    //   div.classList.add("active");
+    // })
+  };
+  
+  searchInput.addEventListener('change', filterMatches);
+  searchInput.addEventListener('keyup', filterMatches);
+  
+</script>
+
+<%- include("partials/footer") %>

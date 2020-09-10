@@ -1,0 +1,95 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav ul {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+ul {
+  list-style: none;
+}
+
+.grid {
+  margin: auto;
+  padding: 0;
+  max-width: 850px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.grid li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  animation: slidein 1s forwards;
+}
+
+.grid-img {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+}
+
+.grid-card {
+  max-width: 300px;
+}
+
+.Common {
+  border: 1px solid lightgray;
+}
+
+.Uncommon {
+  border: 1px solid yellowgreen;
+}
+.Legendary {
+  border: 1px solid red;
+}
+.Boss {
+  border: 1px solid #cada51;
+}
+.Lunar {
+  border: 1px solid cyan;
+}
+.Equipment {
+  border: 1px solid orange;
+}
+.Lunar-Equipment {
+  border: 1px solid cyan;
+}
+
+@keyframes slidein {
+  from {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  
+}
+
+.inactive {
+  order: 2;
+  filter: grayscale(1);
+  opacity: 0.25;
+}
+
+.inactive .grid-img {
+  opacity: 0.25;
+}
+
+.inactive .grid-card {
+  opacity: 0.25;
+}
