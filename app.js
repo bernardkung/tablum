@@ -7,9 +7,9 @@ const itemRoutes    = require("./routes/items");
 const seedDB        = require("./seeds.js");
 const app           = express();
 
-
 // Initialize
-const uri = "mongodb+srv://tablum_app:Wkynt8qf6UBpH2CE@tablum.zvip3.mongodb.net/riskofrain?retryWrites=true&w=majority"
+const uri = `mongodb+srv://${process.env.TABLUM_UID}:${process.env.TABLUM_PWD}@tablum.zvip3.mongodb.net/riskofrain?retryWrites=true&w=majority`
+
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
