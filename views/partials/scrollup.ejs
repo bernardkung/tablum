@@ -1,0 +1,51 @@
+
+
+
+<button id="scrollUp" action="button">
+  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+</button>
+
+
+<script>
+  const upButton = document.querySelector('#scrollUp');
+
+  
+  function debounce(func, wait = 1, immediate = true) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };    
+  
+  function scrollUp() {
+    window.scrollTo({
+      top: 0, 
+      left: window.pageXOffset, 
+      behavior: 'smooth',
+      
+    });
+  };
+  
+  function checkPosition() {
+    if (window.scrollY > 0) {
+      upButton.style.visibility = "visible";
+      upButton.style.opacity = 0.5;
+    } else {
+      upButton.style.visibility = "hidden";
+      upButton.style.opacity = 0;
+    }
+  }
+  
+  upButton.addEventListener('click', scrollUp);
+  window.addEventListener('scroll', debounce(checkPosition));
+</script>
+  
+  

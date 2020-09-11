@@ -16,25 +16,23 @@
             <h3 class="grid-title"><%= item.name %></h3>
             <p class="grid-description"><%= item.description %></p>
             <% if (item.drop != "-") {%>
-              <p class="grid-description">Drop: <%= item.drop %></p>
+              <p class="grid-description"><strong>Drop: </strong><%= item.drop %></p>
             <% }; %>
           </div>
         </li>
       <% }); %>
     </ul>
-    
-  <button id="scrollUp" action="button">
-    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-  </button>
-  
+
   </div>
+  
+<%- include("partials/scrollup") %>
 <%- include("partials/cdn") %>
 
 <script>
-  const searchInput = document.querySelector('#searchInput');
-  const items = <%- JSON.stringify(items) %>;
-  const itemDivs = [...document.querySelectorAll('.grid-item')];
-  
+  const searchInput   = document.querySelector('#searchInput');
+  const items         = <%- JSON.stringify(items) %>;
+  const itemDivs      = [...document.querySelectorAll('.grid-item')];
+
   function findMatches(wordToMatch, array) {
     return array.filter(item => {
       const regex = new RegExp(wordToMatch, 'gi');
@@ -59,11 +57,6 @@
   
   searchInput.addEventListener('change', filterMatches);
   searchInput.addEventListener('keyup', filterMatches);
-  
-  
-  function scrollUp() {
-    console.log("Scrolling!");
-  };
   
   
   
