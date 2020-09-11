@@ -115,6 +115,7 @@ h1 {
 #scrollUp:active {
   background: #0496ff;
   outline: none;
+  opacity: 1;
 }
 
 #scrollUp:focus {
